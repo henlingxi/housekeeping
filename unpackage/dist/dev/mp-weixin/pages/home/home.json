@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "view",
+  "usingComponents": {
+    "resume-list": "../../components/Home/ResumeList"
+  }
+}

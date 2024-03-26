@@ -1,0 +1,18 @@
+/* 水平间距 */
+/* 水平间距 */
+.setting.data-v-5fed78fb {
+  background-color: var(--bace-background-color);
+  height: 100vh;
+}
+.setting .title.data-v-5fed78fb {
+  background-color: var(--bace-background-color);
+  height: 10rpx;
+}
+.setting .list.data-v-5fed78fb {
+  border-radius: 20rpx;
+  margin: 10rpx;
+  overflow: hidden;
+}
+.setting .list .item.data-v-5fed78fb {
+  height: 100rpx;
+}

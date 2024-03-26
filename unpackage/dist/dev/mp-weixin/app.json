@@ -1,0 +1,57 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/home/user",
+    "pages/login/login",
+    "pages/home/info",
+    "pages/user/center",
+    "pages/user/message",
+    "pages/public/setting",
+    "pages/public/about",
+    "pages/public/protocol",
+    "pages/user/changeInfo",
+    "pages/public/feedback",
+    "pages/public/privacyPolicy",
+    "pages/user/information",
+    "pages/user/messageList",
+    "pages/public/assist",
+    "pages/home/productList",
+    "pages/reservation/reservation",
+    "pages/reservation/list",
+    "pages/reservation/reservationParticulars",
+    "pages/user/showUser",
+    "pages/resume/resume",
+    "pages/resume/writeResume"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "演示",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8",
+    "renderingMode": "seperated",
+    "pageOrientation": "portrait",
+    "rpxCalcMaxDeviceWidth": 960,
+    "rpxCalcBaseDeviceWidth": 375,
+    "rpxCalcIncludeWidth": 750
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#222222",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "主页"
+      },
+      {
+        "pagePath": "pages/home/user",
+        "text": "用户"
+      }
+    ]
+  },
+  "requiredPrivateInfos": [
+    "getLocation"
+  ],
+  "usingComponents": {}
+}

@@ -1,0 +1,12 @@
+/* 水平间距 */
+/* 水平间距 */
+.home .home-picture.data-v-07e72d3c {
+  position: relative;
+}
+.home .home-picture .image.data-v-07e72d3c {
+  width: 100%;
+}
+.home .home-list.data-v-07e72d3c {
+  background-color: var(--bace-background-color);
+  padding: 10rpx 2rpx;
+}
