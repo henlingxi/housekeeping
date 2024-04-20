@@ -114,7 +114,6 @@ export async function ChangeReservation(data){
 			"Authorization": `${uni.getStorageSync("access_token")}`
 		}
 	})
-	console.log(res)
 	if(res.status>=200 && res.status<300){
 		uni.showToast({
 			title: "成功",
@@ -172,6 +171,7 @@ export async function SetReservationRemark(data){
 		method:'post',
 		data
 	})
+	console.log(res)
 	return {total:res.data.data.total,items:res.data.data.items}
 }
 

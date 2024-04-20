@@ -1,23 +1,34 @@
 <template>
 	<view class="Reservation">
-		<uni-section title="简介" subTitle="介绍一下自己,找到心仪的工作"  padding>
-			<uni-easyinput class="" trim="all" v-model="resume.introduction" placeholder="请输入内容" ></uni-easyinput>
-		</uni-section>
-		<uni-section title="工作经验" subTitle="写出你异于常人的经验"  padding>
-			<uni-easyinput class="" trim="all" v-model="resume.exprience" placeholder="请输入内容" ></uni-easyinput>
-		</uni-section>
-		<uni-section title="详细介绍" subTitle="写出你异于常人的经验"  padding>
-			<uni-easyinput class="" trim="all" v-model="resume.detail" placeholder="请输入内容" ></uni-easyinput>
-		</uni-section>
-		<uni-section title="薪水" subTitle="写出您提供的报酬 单位:元"  padding>
-			<uni-easyinput type="number" class="" trim="all" v-model="resume.salary" placeholder="请输入内容" ></uni-easyinput>
-		</uni-section>	
-		<uni-section title="工作类型" subTitle=""  padding>
-			<picker @change="pick" mode='selector' :value="pickIndex" :range="WorkInfoStore.workTypeList" range-key="workType" class='listPicker'>
-				<view>{{WorkInfoStore.workTypeList[pickIndex].workType+' [ 点击更换 ] ' || 'undefined' }}</view>
+		<view class="reservation-view">
+			<view class="text">简介</view>
+			<uni-easyinput trim="all" v-model="resume.introduction" class="introduction" placeholder="介绍一下自己,找到心仪的工作"
+				:inputBorder="false"></uni-easyinput>
+		</view>
+		<view class="reservation-view">
+			<view class="text">工作经验</view>
+			<uni-easyinput type="textarea" trim="all" v-model="resume.exprience" placeholder="写出你异于常人的经验"
+				:inputBorder="false" class="introduction"></uni-easyinput>
+		</view>
+		<view class="reservation-view">
+			<view class="text">详细介绍</view>
+			<uni-easyinput type="textarea" trim="all" v-model="resume.detail" placeholder="写出你异于常人的经验"
+				:inputBorder="false" class="introduction"></uni-easyinput>
+		</view>
+		<view class="reservation-view">
+			
+			<view class="text"><img src="../../static/星号.png" alt="" class="mast_img">薪水</view>
+			<uni-easyinput type="number" trim="all" v-model="resume.salary" placeholder="请输入期望薪水" :inputBorder="false"
+				class="introduction"></uni-easyinput>
+		</view>
+		<view class="reservation-view">
+			<view class="text"><img src="../../static/星号.png" alt="" class="mast_img">工作类型</view>
+			<picker @change="pick" mode='selector' :value="pickIndex" :range="WorkInfoStore.workTypeList"
+				range-key="workType" class='listPicker introduction'>
+				{{pickIndex == -1 ? "请选择工作类型" : WorkInfoStore.workTypeList[pickIndex].workType}}
 			</picker>
-		</uni-section>	
-		 
+		</view>
+
 		<view class="btns flex">
 			<button class="button clear" @click="clear">清空</button>
 			<button class="button submit" @click="submit">发布</button>
@@ -26,69 +37,120 @@
 </template>
 
 <script setup>
-import RouteIntercept from '../../hooks/RouteIntercept';
-	import { onShow } from '@dcloudio/uni-app'
-	import { NewResume } from "@/apis/resumeApis"
-	import { ref, reactive ,computed} from "vue"
-	import {useWorkInfoStore} from '@/stores/workinfo.ts'
+	import RouteIntercept from '../../hooks/RouteIntercept';
+	import {
+		onShow
+	} from '@dcloudio/uni-app'
+	import {
+		NewResume
+	} from "@/apis/resumeApis"
+	import {
+		ref,
+		reactive,
+		computed
+	} from "vue"
+	import {
+		useWorkInfoStore
+	} from '@/stores/workinfo.ts'
 	const WorkInfoStore = useWorkInfoStore()
-	
+
 	const resume = reactive({
-		exprience:"",
-		introduction:"",
-		detail:"",
-		salary:0,
-		workType:0
+		exprience: "",
+		introduction: "",
+		detail: "",
+		salary: 0,
+		workType: 0
 	})
 	const submit = async () => {
-		if(resume.workType === 0) resume.workType = WorkInfoStore.workTypeList[pickIndex.value].id
-		const {status} = await NewResume({
-			exprience:resume.exprience,
-			introduction:resume.introduction,
-			detail:resume.detail,
-			salary:resume.salary-0,
-			workType:`${resume.workType}`
+		if (resume.workType === 0) resume.workType = WorkInfoStore.workTypeList[pickIndex.value].id
+		const {
+			status
+		} = await NewResume({
+			exprience: resume.exprience,
+			introduction: resume.introduction,
+			detail: resume.detail,
+			salary: resume.salary - 0,
+			workType: `${resume.workType}`
 		})
-		if(status)clear()
+		if (status) clear()
 	}
 	const clear = () => {
-		resume.exprience="",
-		resume.introduction="",
-		resume.salary= 0,
-		resume.workType = 0,
-		resume.detail = ""
-		
-	}
-	
-	let pickIndex = ref(0)
+		resume.exprience = "",
+			resume.introduction = "",
+			resume.salary = 0,
+			resume.workType = 0,
+			resume.detail = "",
+			pickIndex.value = -1
 
-	const pick = (e)=>{
+	}
+
+	let pickIndex = ref(-1)
+
+	const pick = (e) => {
 		pickIndex.value = e.detail.value
-	   resume.workType = WorkInfoStore.workTypeList[e.detail.value].id
+		resume.workType = WorkInfoStore.workTypeList[e.detail.value].id
 		// filterOptions.index = e.detail.value;
 		// filterOptions.active = filterOptions.array[e.detail.value].name
 	}
-	
-	onShow(()=>{
+
+	onShow(() => {
 		RouteIntercept()
 	})
 </script>
 
 <style lang="scss" scoped>
-	.Reservation{
-		.btns{
-			width: 100%;
-			.submit{
+	::v-deep.uni-easyinput__content-input {
+		margin-left: -18rpx;
+	}
+
+	.Reservation {
+		.reservation-view {
+			display: flex;
+			margin: 20rpx;
+			padding: 20rpx;
+			border-bottom: 1rpx solid #eeeeee;
+			.mast_img{
+				width: 20rpx;
+				height: 20rpx;
+				vertical-align: top;
+			}
+			.text {
+				flex: 1;
+				text-align: center;
+				// text-align: justify;
+				// text-justify: distribute-all-lines;
+				// text-align-last: justify;
+				margin-right: 60rpx;
+				padding-top: 10rpx;
+			}
+
+			.introduction {
 				flex: 3;
 			}
-			.clear{
+
+			.listPicker {
+				// text-align: center;
+				font-size: 0.9rem;
+			}
+
+		}
+
+		.btns {
+			width: 100%;
+
+			.submit {
+				flex: 3;
+			}
+
+			.clear {
 				flex: 1;
 			}
 		}
-		.button{
+
+		.button {
 			margin: 30upx 10upx;
-			color: var(--borderColor);
-		}	
+			background-color: var(--blue);
+			color: #fff;
+		}
 	}
-	
 </style>

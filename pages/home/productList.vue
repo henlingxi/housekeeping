@@ -2,6 +2,7 @@
 	<view class="box">
 		<view class="navbarbox">
 			<view class="navbar">
+			
 				<ul v-for="(item, index) in serve" :key="index" class="navbar_ul">
 					<li :class="select===index?'select_navbar_li':'navbar_li'" @click="changestyle(index)">{{item}}</li>
 				</ul>

@@ -1,6 +1,6 @@
 {
-    "name" : "for_nest",
-    "appid" : "",
+    "name" : "焕然派Heanpare",
+    "appid" : "__UNI__5140FE4",
     "description" : "",
     "versionName" : "1.0.0",
     "versionCode" : "100",
@@ -50,12 +50,25 @@
     /* 快应用特有相关 */
     "mp-weixin" : {
         /* 小程序特有相关 */
-		"requiredPrivateInfos":["getLocation"],
+        "requiredPrivateInfos" : [ "getLocation" ],
         "appid" : "",
         "setting" : {
             "urlCheck" : false
         },
         "usingComponents" : true
     },
-    "vueVersion" : "3"
+    "vueVersion" : "3",
+    "fallbackLocale" : "zh-Hans",
+    "h5" : {
+        "title" : "焕然派Heanpare",
+        "devServer" : {
+            "port" : 7706,
+            "https" : false
+        },
+        "router" : {
+            "base" : "./",
+            "mode" : "hash"
+        },
+        "template" : "index.html"
+    }
 }

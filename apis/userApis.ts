@@ -14,6 +14,7 @@ export async function GetInfo(){
 		url:'/user/detail',
 		method:'GET',
 	})
+	console.log(data)
 	 if(data.status>=200 && data.status<300){
 		const useUserInfo = useUserInfoStore()
 		useUserInfo.changeInfo(data.data)
@@ -87,12 +88,11 @@ export async function UpdateEmail(info:Info){
 }
 // /user/updateAvatar
 export async function UpLoad(e){
-    console.log('Selected file:', e);
+    console.log('Selected file:', e.path);
         // 创建一个FormData对象
         const formData = new FormData();
         // 将选中的文件添加到FormData中
         formData.append('file', e);
-
         // 上传FormData中的数据到服务器
         uni.uploadFile({
           url: baseUrl+'/user/updateAvatar', // 服务器上传接口地址
@@ -103,7 +103,7 @@ export async function UpLoad(e){
 			  "Authorization": `${uni.getStorageSync("refresh_token")}`
 		  },
           success: (uploadRes) => {
-            console.log('Upload successful:', uploadRes);
+            console.log('Upload successful:', uploadRes.data);
             // 文件上传成功，可以在这里进行相关操作
 			 GetInfo()
 			uni.showToast({

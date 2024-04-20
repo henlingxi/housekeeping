@@ -18,7 +18,7 @@
 		margin: 100upx 0;
 		.button{
 			margin: 20upx;
-			background-color: var(--borderColor);
+			background-color: var(--blue);
 			color: var(--backgroundColor);
 		}
 	}

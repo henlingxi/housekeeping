@@ -37,6 +37,7 @@
 		  --shallow:#f3f7ff;
 		  --black:#555;
 		  --red:#cb4042;
+		  --blue:#5ab6dd;
 	}
 
 	/* #endif */
@@ -85,7 +86,7 @@
 		color: #676767;
 	}
 	.blue{
-		color: #5555ff;
+		color: var(--blue);
 	}
 	.red{
 		color: #ff557f;
@@ -112,5 +113,8 @@
 	}
 	.border{
 	  border: 1px solid var(--borderColor);
+	}
+	.address-img{
+		width: 25rpx;
 	}
 </style>
